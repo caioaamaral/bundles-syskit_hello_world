@@ -7,10 +7,17 @@ using_task_library 'robot_frames'
 module HelloWorld
     module Compositions #:nodoc:
         class ArmCartesianControlWdls < Syskit::Composition
-            add OroGen.cart_ctrl_wdls.WDLSSolver, as: 'twist2joint_velocity'
-            add OroGen.cart_ctrl_wdls.CartCtrl, as: 'position2twist'
-            add OroGen.robot_frames.SingleChainPublisher, as: 'joint2pose'
-            add CommonModels::Devices::Gazebo::Model, as: 'arm'
+            argument :robot
+
+            add(OroGen.cart_ctrl_wdls.CartCtrl, as: 'position2twist')
+
+            add(OroGen.cart_ctrl_wdls.WDLSSolver, as: 'twist2joint_velocity')
+                .with_arguments(robot: from(:parent_task).robot)
+
+            add(OroGen.robot_frames.SingleChainPublisher, as: 'joint2pose')
+                .with_arguments(robot: from(:parent_task).robot)
+
+            add(CommonModels::Devices::Gazebo::Model, as: 'arm')
 
             position2twist_child.ctrl_out_port.
                 connect_to twist2joint_velocity_child.desired_twist_port

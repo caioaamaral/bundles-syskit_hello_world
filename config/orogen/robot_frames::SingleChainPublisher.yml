@@ -4,11 +4,9 @@
 # By entering '__base__' as root or tip link, one could refer to the actual
 # base-link of the robot model
 chain:
-  name: ''
-  root_link: ''
-  root_link_renamed: ''
-  tip_link: ''
-  tip_link_renamed: ''
+  root_link: 'ur10::base'
+  tip_link: 'ur10::wrist_3'
+
 # Filename or text representation of the robot model
 # 
 # By default, it is interpreted as a path to a URDF file. If it starts with

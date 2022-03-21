@@ -20,6 +20,7 @@ module HelloWorld
                 define 'arm_cartesian_constant_control',
                     Compositions::ArmCartesianConstantControlWdls
                         .use(UR10Base.ur10_dev)
+                        .with_arguments(robot: UR10Base)
 
                 define 'joint_position_constant_control',
                     Compositions::JointPositionConstantControl
