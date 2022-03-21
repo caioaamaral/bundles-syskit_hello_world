@@ -1,0 +1,23 @@
+--- name:default
+# The chain we want to resolve
+# 
+# By entering '__base__' as root or tip link, one could refer to the actual
+# base-link of the robot model
+chain:
+  name: ''
+  root_link: ''
+  root_link_renamed: ''
+  tip_link: ''
+  tip_link_renamed: ''
+# Filename or text representation of the robot model
+# 
+# By default, it is interpreted as a path to a URDF file. If it starts with
+# an XML tag, it is interpreted instead as a XML text.
+# 
+# Whether it is a URDF or SDF model is controlled by the robot_model_format
+# property
+robot_model: ''
+# In which format is robot_model
+# 
+# Set to ROBOT_MODEL_URDF for URDF and ROBOT_MODEL_SDF for SDF.
+robot_model_format: :ROBOT_MODEL_AUTO

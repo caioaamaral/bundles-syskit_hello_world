@@ -1,0 +1,76 @@
+--- name:default
+# Control cycle time in seconds.
+cycle_time: 0.01
+# Max controller output twist. If one value exceeds this maximum, all other values will be scaled accordingly. If not set, arbitrarily high controller output is allowed.
+max_ctrl_out:
+  time:
+    microseconds: 0
+  sourceFrame: ''
+  targetFrame: ''
+  position:
+    data:
+    - .nan
+    - .nan
+    - .nan
+  cov_position:
+    data:
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+  orientation:
+    im:
+    - .nan
+    - .nan
+    - .nan
+    re: .nan
+  cov_orientation:
+    data:
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+  velocity:
+    data:
+    - 0.1
+    - .nan
+    - .nan
+  cov_velocity:
+    data:
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+  angular_velocity:
+    data:
+    - .nan
+    - .nan
+    - 2.deg
+  cov_angular_velocity:
+    data:
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+    - .nan
+# Proportional Gain for the controller. Size has to be 6. If not set, all values default to 1.
+p_gain: []
