@@ -20,9 +20,9 @@ module HelloWorld
 
                 def values
                     if super
-                        sample = super['out'].dup
-                        sample.time = Time.now
-                        Hash['out' => sample]
+                        pose_stamped = super['out'].dup
+                        pose_stamped.time = Time.now
+                        Hash['out' => pose_stamped]
                     end
                 end
         end
