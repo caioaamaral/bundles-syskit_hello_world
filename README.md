@@ -1,3 +1,6 @@
+# Syskit HelloWorld Tutorial
+The tutorial may be found [here](https://www.rock-robotics.org/rock-and-syskit/basics/)
+
 # App Folder Structure
 
 An app configuration can be split in so-called `robot` configurations. Robot

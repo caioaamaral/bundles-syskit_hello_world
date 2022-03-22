@@ -7,7 +7,7 @@ module HelloWorld
     module Compositions #:nodoc:
         class ArmCartesianConstantControlWdls < Syskit::Composition
             argument :robot
-            argument :setpoint
+            argument :setpoint  # The setpoint as a { position: p, orientation: q }
 
             add(ArmCartesianConstantCommandGenerator, as: 'command')
                 .with_arguments(setpoint: from(:parent_task).setpoint)
