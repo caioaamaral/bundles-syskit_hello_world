@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "models/profiles/gazebo/base"
+require "models/profiles/gazebo/ur10_base"
 
 module HelloWorld
     module Profiles
         module Gazebo #:nodoc:
-            describe Base do
+            describe UR10Base do
                 # Verifies that the only variation points in the profile are
                 # profile tags. If you want to limit the test to certain
                 # definitions,

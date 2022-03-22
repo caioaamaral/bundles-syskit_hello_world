@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "models/profiles/gazebo/arm_control"
+require "models/profiles/gazebo/ur10_arm_control"
 
 module HelloWorld
     module Profiles
         module Gazebo #:nodoc:
-            describe ArmControl do
+            describe UR10ArmControl do
                 # Verifies that the only variation points in the profile are
                 # profile tags. If you want to limit the test to certain
                 # definitions,

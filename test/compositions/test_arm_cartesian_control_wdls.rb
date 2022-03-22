@@ -12,6 +12,7 @@ module HelloWorld
                 # composition
                 cmp_task = syskit_stub_deploy_configure_and_start(
                     ArmCartesianControlWdls
+                        .with_arguments(robot: Profiles::Gazebo::UR10Base)
                 )
 
                 # At this point, cmp_task and all its children are started

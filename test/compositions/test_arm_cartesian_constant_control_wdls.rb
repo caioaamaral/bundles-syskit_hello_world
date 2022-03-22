@@ -2,6 +2,8 @@
 
 require "models/compositions/arm_cartesian_constant_control_wdls"
 
+require 'hello_world/models/profiles/gazebo/ur10_base'
+
 module HelloWorld
     module Compositions #:nodoc:
         describe ArmCartesianConstantControlWdls do
@@ -12,7 +14,10 @@ module HelloWorld
                 ]
 
                 cmp_task = syskit_stub_deploy_configure_and_start(
-                    ArmCartesianConstantControlWdls.with_arguments(setpoint: setpoint)
+                    ArmCartesianConstantControlWdls
+                        .with_arguments(setpoint: setpoint)
+                        .with_arguments(robot: Profiles::Gazebo::UR10Base)
+
                 )
 
                 assert_equal(setpoint, cmp_task.command_child.setpoint)

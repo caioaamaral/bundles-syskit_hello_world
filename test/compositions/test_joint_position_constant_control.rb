@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'syskit_basics/models/compositions/joint_position_constant_control'
+require 'hello_world/models/compositions/joint_position_constant_control'
 
-module SyskitBasics
+module HelloWorld
     module Compositions
         describe JointPositionConstantControl do
             it "forwards its setpoint argument to the constant generator" do
