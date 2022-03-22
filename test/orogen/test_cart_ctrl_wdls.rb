@@ -6,33 +6,65 @@ require 'hello_world/models/profiles/gazebo/ur10_base'
 
 module OroGen
     describe cart_ctrl_wdls.WDLSSolver do
-        it "configures the robot model" do
-            test_model = SDF::Model.from_xml_string("<model name='test'></model>")
-            robot_mock = flexmock(sdf_model: test_model)
+        before do
+            test_model = SDF::Model.from_xml_string(
+                <<-EOSDF
+                <model name='test'>
+                    <link name="root_test"/>
+                    <link name="tip_test"/>
+                </model>
+                EOSDF
+            )
+            
+            @profile = flexmock(sdf_model: test_model)
+        end
+
+        it "sets the robot_model from its ':robot' argument" do
+            syskit_stub_conf(
+                OroGen.cart_ctrl_wdls.WDLSSolver, 'default',
+                data: { 'root' => 'test::root_test', 'tip' => 'test::tip_test' }
+            )
 
             task = syskit_stub_deploy_and_configure(
                 OroGen.cart_ctrl_wdls.WDLSSolver
-                    .with_arguments(robot: robot_mock)
+                    .with_arguments(robot: @profile)
             )
 
-            assert_equal("<sdf><model name='test'/></sdf>", task.properties.robot_model)
+            assert_equal("<sdf>#{@profile.sdf_model.to_xml_string}</sdf>", task.properties.robot_model)
             assert_equal(:ROBOT_MODEL_SDF, task.properties.robot_model_format)
+        end
+
+        it "raises if the root link does not exists" do
+            syskit_stub_conf(
+                OroGen.cart_ctrl_wdls.WDLSSolver, 'default',
+                data: { 'root' => 'none', 'tip' => 'test::tip_test'}
+            )
+
+            assert_raises(ArgumentError) do
+                syskit_stub_deploy_and_configure(
+                    OroGen.cart_ctrl_wdls.WDLSSolver
+                        .with_arguments(robot: @profile)
+                )
+            end
+        end
+
+        it "raises if the tip link does not exist" do
+            syskit_stub_conf(
+                OroGen.cart_ctrl_wdls.WDLSSolver, 'default',
+                data: {'root' => 'test::root_test', 'tip' => 'none'}
+            )
+
+            assert_raises(ArgumentError) do
+                syskit_stub_deploy_and_configure(
+                    OroGen.cart_ctrl_wdls.WDLSSolver
+                        .with_arguments(robot: @profile)
+                )
+            end
         end
     end
 
     describe cart_ctrl_wdls.AdaptiveWDLSSolver do
-        it "configures the robot model" do
-            test_model = SDF::Model.from_xml_string("<model name='test'></model>")
-            robot_mock = flexmock(sdf_model: test_model)
-
-            task = syskit_stub_deploy_and_configure(
-                OroGen.cart_ctrl_wdls.AdaptiveWDLSSolver
-                    .with_arguments(robot: robot_mock)
-            )
-
-            assert_equal("<sdf><model name='test'/></sdf>", task.properties.robot_model)
-            assert_equal(:ROBOT_MODEL_SDF, task.properties.robot_model_format)
-        end
+        # AdaptiveWDLSSolver inherits the 'update_properties' from WDLSSolver
     end
 
     describe cart_ctrl_wdls.CartCtrl do
