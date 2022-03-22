@@ -46,6 +46,8 @@ end
 #   use_profile HelloWorld::Profiles::BaseProfile
 #
 Robot.actions do
+    use_profile(HelloWorld::Profiles::Gazebo::UR10Base)
+    use_profile(HelloWorld::Profiles::Gazebo::UR10ArmControl)
 end
 
 # Block evaluated when the Roby app is fully setup, and the robot ready to
