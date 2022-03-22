@@ -29,7 +29,7 @@ end
 Syskit.extend_model OroGen.robot_frames.SingleChainPublisher do
     argument :robot
 
-    def configure
+    def update_properties
         super
 
         properties.robot_model = robot.sdf_model.make_root.to_xml_string

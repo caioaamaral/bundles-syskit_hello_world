@@ -3,7 +3,7 @@
 Syskit.extend_model OroGen.cart_ctrl_wdls.WDLSSolver do
     argument :robot
 
-    def configure
+    def update_properties
         super
 
         properties.robot_model = robot.sdf_model.make_root.to_xml_string
