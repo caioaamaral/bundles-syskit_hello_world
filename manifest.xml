@@ -1,0 +1,10 @@
+<package>
+    <description brief="Syskit Tutorial Bundle from 'Rock and Syskit'">
+    </description>
+
+    <depend package="bundles/common_models" />
+    <depend package="simulation/rock_gazebo" />
+    <depend package="control/orogen/cart_ctrl_wdls" />
+    <depend package="control/orogen/robot_frames" />
+</package>
+
